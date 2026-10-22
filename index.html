@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulados Cloud — AWS & Azure</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     VIEW: HOME
+══════════════════════════════════════════════════════════ -->
+<div id="view-home">
+    <div class="hero">
+        <p class="hero-title">Simulados Cloud</p>
+        <p class="hero-sub">Escolha a certificação e comece a praticar agora mesmo.</p>
+    </div>
+
+    <div class="cards-grid">
+
+        <!-- AWS DVA-C02 -->
+        <div class="cert-card card-aws" role="button" tabindex="0"
+             onclick="abrirSimulado('aws')"
+             onkeydown="if(event.key==='Enter')abrirSimulado('aws')"
+             aria-label="Abrir simulado AWS DVA-C02">
+            <div class="cert-header">
+                <div class="cert-logo-wrap">
+                    <i class="fab fa-aws" style="color:#ff9900;font-size:2.1rem;"></i>
+                </div>
+                <div>
+                    <div class="cert-name">AWS</div>
+                    <div class="cert-code">DVA-C02 · Developer Associate</div>
+                </div>
+            </div>
+            <div class="cert-body">
+                <p class="cert-desc">Pratique para a certificação AWS Certified Developer – Associate com questões sobre Lambda, DynamoDB, API Gateway, S3, SQS, SNS e muito mais.</p>
+                <div class="cert-pills">
+                    <span class="cert-pill">Lambda</span>
+                    <span class="cert-pill">DynamoDB</span>
+                    <span class="cert-pill">API Gateway</span>
+                    <span class="cert-pill">S3</span>
+                    <span class="cert-pill">SQS / SNS</span>
+                    <span class="cert-pill">IAM</span>
+                </div>
+                <div class="cert-count"><i class="fas fa-list-ol"></i> 6 simulados · até 65 questões cada</div>
+                <button class="cert-btn"><i class="fas fa-play-circle"></i> Iniciar simulado AWS</button>
+            </div>
+        </div>
+
+        <!-- Azure AZ-900 -->
+        <div class="cert-card card-azure" role="button" tabindex="0"
+             onclick="abrirSimulado('azure')"
+             onkeydown="if(event.key==='Enter')abrirSimulado('azure')"
+             aria-label="Abrir simulado Azure AZ-900">
+            <div class="cert-header">
+                <div class="cert-logo-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.242 47.271" width="36" height="30" aria-hidden="true">
+                        <path d="M28.396 0L11.91 14.982 0 41.27h10.803L28.396 0z" fill="#50e6ff"/>
+                        <path d="M31.25 3.75L18.942 38.857l23.486 2.97-12.24-16.818L31.25 3.75z" fill="#50e6ff" opacity=".8"/>
+                        <path d="M18.942 38.857L10.803 47.27h37.805L42.428 41.826l-23.486-2.969z" fill="#50e6ff" opacity=".6"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="cert-name">Azure</div>
+                    <div class="cert-code">AZ-900 · Fundamentals</div>
+                </div>
+            </div>
+            <div class="cert-body">
+                <p class="cert-desc">Prepare-se para a certificação Microsoft Azure Fundamentals com questões sobre conceitos de nuvem, serviços do Azure, segurança, governança e preços.</p>
+                <div class="cert-pills">
+                    <span class="cert-pill">Conceitos de Nuvem</span>
+                    <span class="cert-pill">Azure AD</span>
+                    <span class="cert-pill">Governança</span>
+                    <span class="cert-pill">Segurança</span>
+                    <span class="cert-pill">Preços</span>
+                    <span class="cert-pill">SLA</span>
+                </div>
+                <div class="cert-count"><i class="fas fa-list-ol"></i> 6 simulados · até 65 questões cada</div>
+                <button class="cert-btn"><i class="fas fa-play-circle"></i> Iniciar simulado Azure</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="home-footer">Simulados para estudo e prática · Não afiliado à AWS nem à Microsoft</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     VIEW: QUIZ
+══════════════════════════════════════════════════════════ -->
+<div id="view-quiz" style="display:none;">
+
+    <!-- Sidebar -->
+    <div id="sidebarMenu" class="sidebar">
+        <div class="sidebar-header">
+            <span class="text-white fw-bold">
+                <i id="sidebar-icon" class="fas fa-layer-group me-2"></i>Simulados
+            </span>
+            <button type="button" class="btn-close btn-close-white" onclick="toggleSidebar()"></button>
+        </div>
+        <div class="sidebar-menu" id="sidebarItemsContainer"></div>
+    </div>
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Conteúdo principal -->
+    <div style="padding-top:1rem;">
+        <div class="container quiz-container">
+            <div class="card-quiz">
+
+                <!-- Header -->
+                <div class="header-quiz p-4">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-outline-light" onclick="toggleSidebar()" style="border-radius:8px">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <button class="btn btn-outline-light btn-sm" onclick="voltarHome()" style="border-radius:50px" title="Voltar à home">
+                                <i class="fas fa-home"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <div class="mode-toggle" id="modeToggle" onclick="toggleMode()" title="Alternar modo">
+                                <span class="mode-label" id="mode-label-teste">
+                                    <i class="fas fa-book-open me-1"></i>Teste
+                                </span>
+                                <span class="mode-label mode-label-inactive" id="mode-label-prova">
+                                    <i class="fas fa-graduation-cap me-1"></i><span class="btn-label">Prova</span>
+                                </span>
+                                <div class="mode-slider" id="modeSlider"></div>
+                            </div>
+                            <button onclick="resetAndRestart()" class="btn btn-sm btn-outline-light px-3 py-2" style="border-radius:50px">
+                                <i class="fas fa-sync-alt"></i><span class="btn-label ms-2">Reiniciar</span>
+                            </button>
+                            <button onclick="finalizarTeste()" id="btn-finalizar" class="btn btn-sm px-3 py-2 fw-bold" style="border-radius:50px;">
+                                <i class="fas fa-flag-checkered"></i><span class="btn-label ms-2">Finalizar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corpo -->
+                <div class="p-4">
+                    <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+                        <div id="quiz-logo"></div>
+                        <div>
+                            <h1 class="h4 mb-0 fw-bold" id="simulado-title-display">Carregando...</h1>
+                            <p class="small text-muted mb-0" id="quiz-subtitle"></p>
+                        </div>
+                    </div>
+
+                    <div id="quiz-screen">
+                        <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+                            <div class="small fw-bold text-muted">
+                                Questão <span id="current-q">1</span> de <span id="total-q-display">–</span>
+                            </div>
+                            <div class="flex-grow-1 mx-4">
+                                <div class="progress" style="height:8px;border-radius:10px;">
+                                    <div id="progress-bar" class="progress-bar" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div id="score-header" class="fw-bold text-success fs-5">0/0</div>
+                        </div>
+
+                        <div id="quizCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+                            <div class="carousel-inner" id="carousel-inner">
+                                <div class="text-center py-5">
+                                    <i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i>
+                                    <h5>Carregando perguntas...</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Botões flutuantes -->
+        <button class="btn btn-outline-secondary float-btn float-prev" onclick="prevQuestion()" aria-label="Anterior">
+            <i class="fas fa-arrow-left"></i>
+            <span class="btn-text ms-2">Anterior</span>
+        </button>
+        <button class="btn float-btn float-next fw-bold" id="btn-next" onclick="nextQuestion()" aria-label="Próxima">
+            <span class="btn-text me-2">Próxima</span>
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+</div><!-- /view-quiz -->
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/config.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/revisao.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
